@@ -1,0 +1,7 @@
+
+node_modules/
+careerhub.db
+careerhub.db-shm
+careerhub.db-wal
+.env
+.DS_Store

@@ -1,0 +1,246 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CareerHub - Discover jobs, save opportunities and manage your job applications.">
+  <title>CareerHub | Find Your Future</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="navbar">
+    <a href="#" class="logo"><span class="logo-icon">C</span> CareerHub</a>
+
+    <nav class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#jobs">Find Jobs</a>
+      <a href="#companies">Companies</a>
+      <a href="#about">About</a>
+    </nav>
+
+    <div class="nav-actions">
+      <button class="btn btn-light" id="savedNavBtn" type="button">♡ Saved Jobs</button>
+      <button class="btn btn-primary" id="postJobNavBtn" type="button">+ Post a Job</button>
+    </div>
+
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <span class="eyebrow">YOUR CAREER JOURNEY STARTS HERE</span>
+        <h1>Find a job that<br>matches your <span>ambition.</span></h1>
+        <p>Discover opportunities, connect with employers and take the next step in your professional journey.</p>
+
+        <form class="search-bar" id="jobSearchForm">
+          <label class="search-field">
+            <span>⌕</span>
+            <input id="searchInput" type="search" placeholder="Job title, keyword or company" aria-label="Search jobs">
+          </label>
+          <label class="search-field category-field">
+            <span>▦</span>
+            <select id="categoryFilter" aria-label="Job category">
+              <option value="">All categories</option>
+              <option value="IT">IT & Software</option>
+              <option value="Design">Design</option>
+              <option value="Marketing">Marketing</option>
+              <option value="Finance">Finance</option>
+              <option value="HR">Human Resources</option>
+              <option value="Other">Other</option>
+            </select>
+          </label>
+          <button class="btn btn-primary search-btn" type="submit">Search Jobs →</button>
+        </form>
+
+        <div class="popular-searches">
+          <strong>Popular:</strong>
+          <button type="button" class="search-chip" data-search="Developer">Developer</button>
+          <button type="button" class="search-chip" data-search="Designer">Designer</button>
+          <button type="button" class="search-chip" data-search="Intern">Internships</button>
+        </div>
+      </div>
+
+      <div class="hero-art" aria-hidden="true">
+        <div class="art-orbit orbit-one"></div>
+        <div class="art-orbit orbit-two"></div>
+        <div class="art-card art-card-main">
+          <div class="art-icon">✦</div>
+          <div class="art-lines"><i></i><i></i><i></i></div>
+          <div class="art-pill">Career growth</div>
+        </div>
+        <div class="floating-card floating-top"><span>↗</span><div><strong>New opportunities</strong><small>Start your next chapter</small></div></div>
+        <div class="floating-card floating-bottom"><span>✓</span><div><strong>Your future awaits</strong><small>One step at a time</small></div></div>
+      </div>
+    </section>
+
+    <section class="stats" aria-label="CareerHub statistics">
+      <div class="stat-item"><strong id="totalJobs">0</strong><span>Available Jobs</span></div>
+      <div class="stat-item"><strong id="totalCompanies">0</strong><span>Companies</span></div>
+      <div class="stat-item"><strong id="totalApplications">0</strong><span>Applications Sent</span></div>
+      <div class="stat-item"><strong id="totalSaved">0</strong><span>Saved Jobs</span></div>
+    </section>
+
+    <section class="section jobs-section" id="jobs">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">OPPORTUNITIES FOR YOU</span>
+          <h2>Explore <span>latest jobs</span></h2>
+          <p>Find opportunities that fit your skills and goals.</p>
+        </div>
+        <button class="btn btn-light" id="clearFiltersBtn" type="button">Clear filters ↻</button>
+      </div>
+
+      <div class="job-toolbar">
+        <div class="filter-tabs" id="filterTabs">
+          <button class="filter-tab active" type="button" data-filter="All">All Jobs</button>
+          <button class="filter-tab" type="button" data-filter="Full Time">Full Time</button>
+          <button class="filter-tab" type="button" data-filter="Part Time">Part Time</button>
+          <button class="filter-tab" type="button" data-filter="Internship">Internships</button>
+          <button class="filter-tab" type="button" data-filter="Remote">Remote</button>
+        </div>
+        <label class="sort-control">Sort:
+          <select id="sortJobs">
+            <option value="newest">Newest first</option>
+            <option value="salary">Highest salary</option>
+            <option value="company">Company A–Z</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="job-layout">
+        <aside class="filter-sidebar">
+          <h3>Filter jobs</h3>
+          <label class="form-label" for="locationFilter">Location</label>
+          <input class="form-control" id="locationFilter" type="text" placeholder="e.g. Chennai">
+
+          <label class="form-label" for="typeFilter">Employment type</label>
+          <select class="form-control" id="typeFilter">
+            <option value="">All types</option>
+            <option value="Full Time">Full Time</option>
+            <option value="Part Time">Part Time</option>
+            <option value="Internship">Internship</option>
+            <option value="Contract">Contract</option>
+          </select>
+
+          <label class="form-label" for="salaryFilter">Minimum salary</label>
+          <select class="form-control" id="salaryFilter">
+            <option value="0">Any salary</option>
+            <option value="20000">₹20,000 / month</option>
+            <option value="40000">₹40,000 / month</option>
+            <option value="60000">₹60,000 / month</option>
+            <option value="80000">₹80,000 / month</option>
+          </select>
+
+          <button class="btn btn-primary btn-full" id="applyFiltersBtn" type="button">Apply Filters</button>
+        </aside>
+
+        <div class="jobs-content">
+          <div class="results-heading"><span id="resultsCount">Loading jobs...</span></div>
+          <div class="job-grid" id="jobList" aria-live="polite">
+            <div class="loading-state">Loading opportunities...</div>
+          </div>
+          <button class="btn btn-light btn-full load-more-btn" id="loadMoreBtn" type="button" hidden>Show more jobs</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section saved-section" id="savedJobsSection" hidden>
+      <div class="section-heading">
+        <div><span class="eyebrow">YOUR COLLECTION</span><h2>Saved <span>jobs</span></h2><p>Opportunities you want to revisit.</p></div>
+        <button class="btn btn-light" id="backToJobsBtn" type="button">← Browse jobs</button>
+      </div>
+      <div class="job-grid" id="savedJobList"></div>
+    </section>
+
+    <section class="section applications-section" id="applications">
+      <div class="section-heading">
+        <div><span class="eyebrow">KEEP TRACK</span><h2>My <span>applications</span></h2><p>Track the progress of jobs you've applied for.</p></div>
+        <button class="btn btn-light" id="refreshApplicationsBtn" type="button">↻ Refresh</button>
+      </div>
+      <div class="table-wrap">
+        <table class="applications-table">
+          <thead><tr><th>Job</th><th>Company</th><th>Date applied</th><th>Status</th></tr></thead>
+          <tbody id="applicationHistory">
+            <tr><td colspan="4" class="empty-cell">Your application history will appear here.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="cta-section" id="companies">
+      <div><span class="eyebrow">FOR EMPLOYERS</span><h2>Find the right people for your team.</h2><p>Share your opportunity with people ready to make a difference.</p></div>
+      <button class="btn btn-white" id="postJobCtaBtn" type="button">Post a job →</button>
+    </section>
+
+    <section class="section about-section" id="about">
+      <span class="eyebrow">ABOUT CAREERHUB</span>
+      <h2>Your next opportunity starts with <span>one click.</span></h2>
+      <p>CareerHub brings job seekers and employers together in one simple place. Explore opportunities, save jobs and manage your applications.</p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <a href="#home" class="logo"><span class="logo-icon">C</span> CareerHub</a>
+    <p>Build your future, one opportunity at a time.</p>
+    <span>© <span id="currentYear"></span> CareerHub. All rights reserved.</span>
+  </footer>
+
+  <!-- Add / Edit Job Dialog -->
+  <dialog class="modal" id="jobModal">
+    <form id="jobForm" class="modal-form">
+      <div class="modal-header"><div><span class="eyebrow">EMPLOYER SPACE</span><h2 id="jobModalTitle">Post a job</h2></div><button class="icon-btn" type="button" data-close="jobModal" aria-label="Close">✕</button></div>
+      <input type="hidden" id="jobId">
+      <label class="form-label" for="jobTitle">Job title *</label>
+      <input class="form-control" id="jobTitle" required maxlength="100" placeholder="e.g. Frontend Developer">
+      <label class="form-label" for="jobCompany">Company *</label>
+      <input class="form-control" id="jobCompany" required maxlength="100" placeholder="Company name">
+      <div class="form-row">
+        <div><label class="form-label" for="jobLocation">Location *</label><input class="form-control" id="jobLocation" required placeholder="e.g. Chennai / Remote"></div>
+        <div><label class="form-label" for="jobCategory">Category *</label><select class="form-control" id="jobCategory" required><option value="IT">IT & Software</option><option value="Design">Design</option><option value="Marketing">Marketing</option><option value="Finance">Finance</option><option value="HR">Human Resources</option><option value="Other">Other</option></select></div>
+      </div>
+      <div class="form-row">
+        <div><label class="form-label" for="jobType">Employment type *</label><select class="form-control" id="jobType" required><option>Full Time</option><option>Part Time</option><option>Internship</option><option>Contract</option></select></div>
+        <div><label class="form-label" for="jobSalary">Monthly salary (₹) *</label><input class="form-control" id="jobSalary" type="number" min="0" required placeholder="e.g. 35000"></div>
+      </div>
+      <label class="form-label" for="jobDescription">Job description *</label>
+      <textarea class="form-control" id="jobDescription" rows="4" required maxlength="3000" placeholder="Describe the role, skills and responsibilities..."></textarea>
+      <label class="form-label" for="jobSkills">Skills (comma separated)</label>
+      <input class="form-control" id="jobSkills" placeholder="JavaScript, HTML, CSS">
+      <div class="modal-actions"><button class="btn btn-light" type="button" data-close="jobModal">Cancel</button><button class="btn btn-primary" type="submit" id="saveJobBtn">Save Job</button></div>
+    </form>
+  </dialog>
+
+  <!-- Job Details Dialog -->
+  <dialog class="modal" id="detailsModal">
+    <div class="modal-form">
+      <div class="modal-header"><div><span class="eyebrow">JOB DETAILS</span><h2 id="detailsTitle">Job title</h2></div><button class="icon-btn" type="button" data-close="detailsModal" aria-label="Close">✕</button></div>
+      <div id="jobDetailsContent"></div>
+      <div class="modal-actions"><button class="btn btn-light" type="button" data-close="detailsModal">Close</button><button class="btn btn-primary" id="detailsApplyBtn" type="button">Apply Now →</button></div>
+    </div>
+  </dialog>
+
+  <!-- Apply Dialog -->
+  <dialog class="modal" id="applyModal">
+    <form id="applyForm" class="modal-form">
+      <div class="modal-header"><div><span class="eyebrow">TAKE THE NEXT STEP</span><h2>Apply for this job</h2></div><button class="icon-btn" type="button" data-close="applyModal" aria-label="Close">✕</button></div>
+      <p id="applyJobSummary"></p>
+      <input type="hidden" id="applyJobId">
+      <label class="form-label" for="applicantName">Full name *</label>
+      <input class="form-control" id="applicantName" required maxlength="100" autocomplete="name" placeholder="Your full name">
+      <label class="form-label" for="applicantEmail">Email address *</label>
+      <input class="form-control" id="applicantEmail" type="email" required maxlength="150" autocomplete="email" placeholder="you@example.com">
+      <label class="form-label" for="applicantPhone">Phone number</label>
+      <input class="form-control" id="applicantPhone" type="tel" maxlength="20" placeholder="Optional">
+      <label class="form-label" for="applicantResume">Resume link (optional)</label>
+      <input class="form-control" id="applicantResume" type="url" placeholder="Link to your resume">
+      <div class="modal-actions"><button class="btn btn-light" type="button" data-close="applyModal">Cancel</button><button class="btn btn-primary" type="submit">Submit Application</button></div>
+    </form>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
